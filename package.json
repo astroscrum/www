@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "repository": "https://github.com/astroscrum/www.git",
   "author": "Astrodudes",
+  "license": "Astrodudes",
   "homepage": "http://astroscrum.com",
   "devDependencies": {
     "grunt": "~0.4.5",
