@@ -5,11 +5,14 @@ module.exports = function(grunt) {
 
   // Static Webserver
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     aws: grunt.file.readJSON('.aws.json'),
+   
    // Run `$ grunt s3` to upload to AWS S3. You need to have creds. 
    s3: {
       options: {
@@ -22,6 +25,9 @@ module.exports = function(grunt) {
         src: "**"
       }
     },
+   // End of S3 Task 
+
+
     // This is the default Grunt Task, It creates a serve based on dist.
     connect: {
       server: {
@@ -32,9 +38,11 @@ module.exports = function(grunt) {
         }
       }
     }
+    // End of Connect Task
+
   });
 
-  // Default task(s).
+  // Default task(s), default runs the conect task
   grunt.registerTask("default", ["connect"]);
 
 };
