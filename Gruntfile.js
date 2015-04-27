@@ -12,8 +12,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     aws: grunt.file.readJSON('.aws.json'),
-   
-   // Run `$ grunt s3` to upload to AWS S3. You need to have creds. 
+
+   // Run `$ grunt s3` to upload to AWS S3. You need to have creds.
    s3: {
       options: {
         accessKeyId: "<%= aws.accessKeyId %>",
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         src: "**"
       }
     },
-   // End of S3 Task 
+   // End of S3 Task
 
 
     // This is the default Grunt Task, It creates a serve based on dist.
