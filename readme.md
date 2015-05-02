@@ -16,4 +16,4 @@ You will need get the AWS S3 token from Ben. This will be placed into a file cal
 
 1. Copy Webflow files into `src`
 2. Run `Grunt` to then go to http://localhost:8000 to inspect site. 
-3. To upload run `grunt s3` 
+3. To upload run `grunt deploy` 
