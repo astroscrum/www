@@ -87,7 +87,7 @@ grunt.loadNpmTasks('grunt-string-replace');
         bucket: "<%= aws.bucket %>",
         enableWeb: true,
          headers: {
-        CacheControl: 604800 // 1 week
+         CacheControl: 604800 // 1 week
       }
       },
       build: {
