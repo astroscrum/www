@@ -9,6 +9,8 @@ module.exports = function(grunt) {
   //  Grunt plugin to compress png images with pngquant. You will need to install pngquant with 
   //  $ brew install pngqunt
   grunt.loadNpmTasks('grunt-pngmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-string-replace');
 
 
   // Project configuration.
@@ -27,6 +29,36 @@ module.exports = function(grunt) {
         ]
       }
     }, 
+
+    uglify: {
+    build: {
+        files: [{
+            expand: true,
+            src: '**/*.js',
+            dest: 'dist/js',
+            cwd: 'src/js',
+        ext: '.min.js'
+        }]
+      }
+    },
+
+    // Plan to use this to replace files with .min.js and .min.css as best pratices. 
+    'string-replace': {
+      inline: {
+        files: {
+        'dist/': 'index.html',
+        },
+        options: {
+          replacements: [
+            // place files inline example
+            {
+              pattern: '<script type="text/javascript" src="js/webflow.js"></script>',
+              replacement: '<script type="text/javascript" src="js/webflow.min.js"></script>'
+            }
+          ]
+        }
+      }
+    },
 
     pngmin: {
       compile: {
@@ -49,7 +81,10 @@ module.exports = function(grunt) {
         accessKeyId: "<%= aws.accessKeyId %>",
         secretAccessKey: "<%= aws.secretAccessKey %>",
         bucket: "<%= aws.bucket %>",
-        enableWeb: true
+        enableWeb: true,
+         headers: {
+        CacheControl: 604800 // 1 week
+      }
       },
       build: {
         cwd: "dist",
@@ -92,6 +127,7 @@ module.exports = function(grunt) {
     'deploy', 
     [
       'copy:release', 
+      'pngmin',
       's3',
       'cloudfront'
     ]
