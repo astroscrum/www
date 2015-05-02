@@ -6,6 +6,9 @@ module.exports = function(grunt) {
   // Static Webserver
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  //  Grunt plugin to compress png images with pngquant. You will need to install pngquant with 
+  //  $ brew install pngqunt
+  grunt.loadNpmTasks('grunt-pngmin');
 
 
   // Project configuration.
@@ -23,7 +26,22 @@ module.exports = function(grunt) {
           }
         ]
       }
-    },    
+    }, 
+
+    pngmin: {
+      compile: {
+        options: {
+          ext: '.png'
+        },
+        files: [
+          {
+            expand: true, // required option 
+            src: ['**/*.png'],
+            cwd: 'dist/images', // required option 
+          }
+        ]
+      }
+    },   
 
    // Run `$ grunt s3` to upload to AWS S3. You need to have creds.
    s3: {
