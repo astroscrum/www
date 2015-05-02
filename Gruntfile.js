@@ -18,12 +18,26 @@ module.exports = function(grunt) {
       options: {
         accessKeyId: "<%= aws.accessKeyId %>",
         secretAccessKey: "<%= aws.secretAccessKey %>",
-        bucket: "<%= aws.bucket %>"
+        bucket: "<%= aws.bucket %>",
+        enableWeb: true
       },
       build: {
         cwd: "dist",
         src: "**"
       }
+    },
+
+
+    cloudfront: {
+      options: {
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        distributionId: "E1SICFVFWG9BM",
+        invalidations: [
+          "/index.html"
+        ]
+      },
+      invalidate: {}
     },
    // End of S3 Task
 
