@@ -12,6 +12,18 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     aws: grunt.file.readJSON('.aws.json'),
+    copy: {      
+      release:{
+        files: [
+          {
+            expand: true, 
+            cwd: 'src/', 
+            src:['**'], 
+            dest: 'dist/'
+          }
+        ]
+      }
+    },    
 
    // Run `$ grunt s3` to upload to AWS S3. You need to have creds.
    s3: {
@@ -58,5 +70,12 @@ module.exports = function(grunt) {
 
   // Default task(s), default runs the conect task
   grunt.registerTask("default", ["connect"]);
-
+  grunt.registerTask(    
+    'deploy', 
+    [
+      'copy:release', 
+      's3',
+      'cloudfront'
+    ]
+  );
 };
