@@ -45,16 +45,20 @@ grunt.loadNpmTasks('grunt-string-replace');
     // Plan to use this to replace files with .min.js and .min.css as best pratices. 
     'string-replace': {
       inline: {
-        files: {
-        'dist/': 'index.html',
-        },
+             files: [{
+          expand: true,
+          cwd: 'src/',
+          src: '**/*.html',
+          dest: 'dist/'
+        }],
         options: {
           replacements: [
             // place files inline example
             {
               pattern: '<script type="text/javascript" src="js/webflow.js"></script>',
               replacement: '<script type="text/javascript" src="js/webflow.min.js"></script>'
-            }
+            },
+
           ]
         }
       }
@@ -128,6 +132,8 @@ grunt.loadNpmTasks('grunt-string-replace');
     [
       'copy:release', 
       'pngmin',
+      'uglify',
+      'string-replace',
       's3',
       'cloudfront'
     ]
