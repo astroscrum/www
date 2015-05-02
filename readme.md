@@ -20,5 +20,8 @@ You will need get the AWS S3 token from Ben. This will be placed into a file cal
 
 
 
-Misc 
+Misc.
 http://d2rpzgbj658jlp.cloudfront.net - Cloudfront URL. 
+
+First test: http://www.webpagetest.org/result/150502_PH_9D7/
+With minifiy images and adding cache http://www.webpagetest.org/result/150502_AG_9K3/1/details/ 
