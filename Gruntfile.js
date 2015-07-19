@@ -6,29 +6,29 @@ module.exports = function(grunt) {
   // Static Webserver
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  //  Grunt plugin to compress png images with pngquant. You will need to install pngquant with 
+
+  //  Grunt plugin to compress png images with pngquant. You will need to install pngquant with
   //  $ brew install pngqunt
   grunt.loadNpmTasks('grunt-pngmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-grunt.loadNpmTasks('grunt-string-replace');
-
+  grunt.loadNpmTasks('grunt-string-replace');
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     aws: grunt.file.readJSON('.aws.json'),
-    copy: {      
+    copy: {
       release:{
         files: [
           {
-            expand: true, 
-            cwd: 'src/', 
-            src:['**'], 
+            expand: true,
+            cwd: 'src/',
+            src:['**'],
             dest: 'dist/'
           }
         ]
       }
-    }, 
+    },
 
     uglify: {
     build: {
@@ -42,7 +42,7 @@ grunt.loadNpmTasks('grunt-string-replace');
       }
     },
 
-    // Plan to use this to replace files with .min.js and .min.css as best pratices. 
+    // Plan to use this to replace files with .min.js and .min.css as best pratices.
     'string-replace': {
       inline: {
              files: [{
@@ -71,13 +71,13 @@ grunt.loadNpmTasks('grunt-string-replace');
         },
         files: [
           {
-            expand: true, // required option 
+            expand: true, // required option
             src: ['**/*.png'],
-            cwd: 'dist/images', // required option 
+            cwd: 'dist/images', // required option
           }
         ]
       }
-    },   
+    },
 
    // Run `$ grunt s3` to upload to AWS S3. You need to have creds.
    s3: {
@@ -127,15 +127,14 @@ grunt.loadNpmTasks('grunt-string-replace');
 
   // Default task(s), default runs the conect task
   grunt.registerTask("default", ["connect"]);
-  grunt.registerTask(    
-    'deploy', 
+  grunt.registerTask(
+    'deploy',
     [
-      'copy:release', 
+      'copy:release',
       'pngmin',
       'uglify',
       'string-replace',
-      's3',
-      'cloudfront'
+      's3'
     ]
   );
 };

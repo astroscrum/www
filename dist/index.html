@@ -28,9 +28,9 @@
     <div class="w-container contaienr">
       <div class="w-row">
         <div class="w-col w-col-5 w-clearfix"><img class="logo" src="images/hubot-logo.png" width="25" alt="54e7a1cf942b09583a0ec1db_hubot-logo.png">
-          <div class="app-name" data-ix="head-spinner-header">astroSCRUM</div>
+          <div class="app-name" data-ix="head-spinner-header">Astroscrum</div>
         </div>
-        <div class="w-col w-col-7 nav-column"><a class="nav-link" href="#features">Features</a><a class="nav-link" href="#how-to">How to</a><a class="nav-link" href="https://github.com/airbrake/hubot-scrum">Download on github</a>
+        <div class="w-col w-col-7 nav-column"><a class="nav-link" href="#how-to">How to</a><a class="nav-link" href="http://docs.astroscrum.com">API Docs</a>
         </div>
       </div>
     </div>
@@ -41,59 +41,22 @@
         <div class="w-col w-col-6"><img class="hero-iphone" src="images/astronaut.png" width="500" alt="54e7b0edcbacd7593aeb95e5_astronaut.png" data-ix="fly-in-from-left">
         </div>
         <div class="w-col w-col-6 call-to-action">
-          <h1 class="hero-header">scrum like a boss</h1>
-          <p class="hero-subtitle">Wouldn't it be great if you could do a daily scrum by talking directly to your bot on Slack or Hipchat!?
-            <br>
-            <br>Scrumbot bugs your teammembers every morning, then annouces everyone's scrum at a specific time.</p><a class="button" href="https://github.com/airbrake/hubot-scrum" data-ix="flick">Fork on Github</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section" id="features">
-    <div class="w-container">
-      <h1>AstroScrum Features</h1>
-      <div class="w-row row">
-        <div class="w-col w-col-6" data-ix="icon-move"><img class="icon" src="images/points.png" width="50" alt="54e7dc4b78da9cde63800403_points.png">
-          <h2 class="heading features">Points</h2>
-          <p>Each Time you send your scrum entry in you will get 10 points! history and stats will always be available.</p>
-        </div>
-        <div class="w-col w-col-6" data-ix="icon-move"><img class="icon" src="images/streak.png" width="50" alt="54e7dc597bf577636af39c0d_streak.png">
-          <h2 class="heading features">Streak Bonus</h2>
-          <p>The more days in a row you fill out your scrum the better!
-            <br>
-            <br>• 00-05 days in a row == 10 points per scrum
-            <br>• 05-10 days in a row == 12 points per scrum
-            <br>• 10-20 days in a row == 14 points per scrum
-            <br>• 20-30 days in a row == 16 points per scrum
-            <br>
-            <br>Still deciding if streaks should be reset each month.</p>
-        </div>
-      </div>
-      <div class="w-row">
-        <div class="w-col w-col-6" data-ix="icon-move"><img class="icon" src="images/reset.png" width="50" alt="54e7dc637bf577636af39c0e_reset.png">
-          <h2 class="heading features">Monthly Reset</h2>
-          <p>This makes things fair for new members and can prevent large gaps in points.
-            <br>&nbsp;
-            <br>Since we can easily get all the users on a team we could just make the top level key: <span class="code">teamname_season_date-userid<br><br></span>Then we can keep the above hash in that object and calculate the values for each user independently. Thoughts?</p>
-        </div>
-        <div class="w-col w-col-6" data-ix="icon-move"><img class="icon" src="images/overwrite.png" width="50" alt="54e7dc76c7afcedc63af6066_overwrite.png">
-          <h2 class="heading features">Overwrites</h2>
-          <p>So you sent the wrong input huh? You can overwrite the entry with something like:&nbsp;</p>
-          <p class="code large">scrum amend today “Improving Docs, @jpsilvashy PTAL airbrake-app/pulls/1133 , Deploying fix for pdf issue”</p>
+          <h1 class="hero-header">Simple Slack powered scrum for your team</h1>
+          <p class="hero-subtitle">The Astroscrum bot collects scrum entries from your teammates over Slack, then distributes the summary to the entire team at noon.</p>
+          <a class="button" href="https://github.com/airbrake/hubot-astroscrum" data-ix="flick">View on Github</a>
         </div>
       </div>
     </div>
   </div>
   <div class="section" id="how-to" data-ix="fly-from-right">
     <div class="w-container">
-      <h1>How To</h1>
       <div class="w-row">
         <div class="w-col w-col-6">
           <h2 class="heading">Installing</h2>
           <p>Add dependency to <span class="code">package.json</span>:</p>
-          <p class="code large">$ npm install --save hubot-scrum</p>
+          <p class="code large">$ npm install --save hubot-astroscrum</p>
           <p>Include package in Hubot's <span class="code">external-scripts.json</span>:</p>
-          <p class="code large">["hubot-scrum"]</p>
+          <p class="code large">["hubot-astroscrum"]</p>
         </div>
         <div class="w-col w-col-6 w-clearfix center"><img class="image" src="images/slack-mockup.png" width="448" alt="54e7d8195aa4d3646a9c4328_slack-mockup.png">
         </div>
@@ -103,27 +66,44 @@
   <div class="section grey" data-ix="move-in-heading-2">
     <div class="w-container configuration-container">
       <h2 class="heading">Configuration</h2>
-      <p class="code large">HUBOT_SCRUM_CLEAR_AT # When to clear the current scrum, use cron style syntax (defaults to: 0 0 0 * * *)
-        <br>HUBOT_SCRUM_NOTIFY_AT # When to notify the HUBOT_SCRUM_ROOM to start the scrum, use cron style syntax (defaults to: 0 0 10 * * 4)
-        <br>HUBOT_SCRUM_ROOM # xxxxx_room_name@conf.hipchat.com</p>
+      <p>Use crontab like syntax to set the scrum event times</p>
+      <p class="code large">
+      # Default time to tell users to do their scrum
+      <br>PROMPT_AT = "0 6 * * * *" # 6am everyday
+      <br>
+      <br># Default scrum reminder time
+      <br>REMIND_AT = "30 11 * * * *" # 11:30am everyday
+      <br>
+      <br># Send the scrum at 10 am everyday
+      <br>SUMMARY_AT = "0 12 * * * *" # noon
+      <br>
+      <br># Set to local timezone
+      <br>TIMEZONE = "America/Los_Angeles"
+      </p>
     </div>
   </div>
   <div class="section" data-ix="move-in-heading-3">
     <div class="w-container">
       <h2 class="heading">Commands</h2>
-      <p class="code large">hubot scrum # start scrum
-        <br>hubot what is doing today? # what has entered for their scrum today?
-        <br>hubot scrum help # displays this help message</p>
+      <p>We designed Astroscrum so that you have a conversation directly with the bot, not in a public room. We did this as an effort to cut out the noise of everyone chatting with the bot. <strong>The following examples assume you are sending direct messages to the bot (not Slackbot btw):</strong>
+      <p class="code large">
+        scrum help # learn about how to use astroscrum
+        <br>today I'll clean my desk # Tell the bot what you are doing today
+        <br>yesterday I fixed email notifications
+        <br>blocked waiting for @mmcdaris's approval on new designs
+        <br>scrum summary # show a summary for the current scrum
+      </p>
     </div>
   </div>
-  <div class="section grey footer"><a class="button" href="https://github.com/airbrake/hubot-scrum" data-ix="flick">Fork on Github</a>
+  <div class="section grey footer">
+    <a class="button" href="https://github.com/airbrake/hubot-astroscrum" data-ix="flick">View on Github</a>
     <div class="w-container">
       <p class="footer-text">AstroScrum by <a href="https://github.com/mmcdaris" class="text-link" href-disabled="https://github.com/mmcdaris">mmcdaris</a>&nbsp;and <a href="https://github.com/jpsilvashy" class="text-link">jpsilvashy</a>. Design by <a href="http://dribbble.com/itolmach" class="text-link" target="_blank">itolmach</a>
       </p><img class="logo-in-footer" src="images/hubot-logo.png" width="25px" alt="54e7a1cf942b09583a0ec1db_hubot-logo.png" data-ix="head-spin-footer">
     </div>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>
