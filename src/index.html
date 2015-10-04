@@ -28,7 +28,13 @@
         <div class="w-col w-col-5 w-clearfix"><img class="logo" src="images/hubot-logo.png" width="25" alt="54e7a1cf942b09583a0ec1db_hubot-logo.png">
           <div class="app-name" data-ix="head-spinner-header">Astroscrum</div>
         </div>
-        <div class="w-col w-col-7 nav-column"><a class="nav-link" href="#how-to">How to</a><a class="nav-link" href="http://docs.astroscrum.com">API Docs</a>
+        <div class="w-col w-col-7 nav-column">
+          <a class="nav-link" href="#installing">Installing</a>
+          <a class="nav-link" href="#usage">Usage</a>
+          <a class="nav-link" href="#configuration">Configuration</a>
+          <a class="nav-link" href="http://docs.astroscrum.com">API Docs</a>
+          <a class="nav-link" href="http://status.astroscrum.com">Status</a>
+          <script async defer src="http://slack.astroscrum.com/slackin.js?large"></script>
         </div>
       </div>
     </div>
@@ -46,22 +52,46 @@
       </div>
     </div>
   </div>
-  <div class="section" id="how-to" data-ix="fly-from-right">
+  <div class="section" id="installing" data-ix="fly-from-right">
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-6">
           <h2 class="heading">Installing</h2>
-          <p>Add dependency to <span class="code">package.json</span>:</p>
+          <p>Add <span class="code">hubot-astroscrum</span> to your <a href='https://github.com/github/hubot-scripts'>Hubot</a>'s <span class="code">package.json</span>:</p>
           <p class="code large">$ npm install --save hubot-astroscrum</p>
           <p>Include package in Hubot's <span class="code">external-scripts.json</span>:</p>
           <p class="code large">["hubot-astroscrum"]</p>
+          <p>Now in your Slack, send <strong>scrum join</strong> as a direct message the bot (not the Slackbot)</p>
         </div>
         <div class="w-col w-col-6 w-clearfix center"><img class="image" src="images/slack-mockup.png" width="448" alt="54e7d8195aa4d3646a9c4328_slack-mockup.png">
         </div>
       </div>
     </div>
   </div>
-  <div class="section grey" data-ix="move-in-heading-2">
+  <div class="section" id="usage">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 w-clearfix">
+          <h2 class="heading">Usage</h2>
+          <br>
+          <img class="image" src="images/slack-1.gif" width="469" alt="Slack">
+        </div>
+        <div class="w-col w-col-6">
+          <p>We designed Astroscrum so that you have a conversation directly with the bot, not in a channel. </p>
+          <p>These examples assume you are sending direct messages to your Hubot user <strong>(not Slackbot)</strong>:</p>
+          <p class="code large">
+            scrum help # learn about how to use Astroscrum
+            <br>scrum join # Add your user to Astroscrum
+            <br>today &lt;task&gt;
+            <br>yesterday &lt;task&gt;
+            <br>blocked &lt;task&gt;
+            <br>scrum summary # A summary for the current scrum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="configuration">
     <div class="w-container configuration-container">
       <h2 class="heading">Configuration</h2>
       <p>Use crontab like syntax to set the scrum event times</p>
@@ -77,20 +107,6 @@
       <br>
       <br># Set to local timezone
       <br>TIMEZONE = "America/Los_Angeles"
-      </p>
-    </div>
-  </div>
-  <div class="section" data-ix="move-in-heading-3">
-    <div class="w-container">
-      <h2 class="heading">Commands</h2>
-      <p>We designed Astroscrum so that you have a conversation directly with the bot, not in a public room. We did this as an effort to cut out the noise of everyone chatting with the bot. <strong>The following examples assume you are sending direct messages to the bot (not Slackbot btw):</strong>
-      <p class="code large">
-        scrum help # learn about how to use astroscrum
-        <br>scrum join # Join the scrum, this means you'll get dm'd by the bot daily
-        <br>today I'll clean my desk # Tell the bot what you are doing today
-        <br>yesterday I fixed email notifications
-        <br>blocked waiting for @mmcdaris's approval on new designs
-        <br>scrum summary # show a summary for the current scrum
       </p>
     </div>
   </div>
